@@ -35,15 +35,15 @@ graph LR
 ```
  Tech StackComponenteTecnologiaFunção no ProjetoOrquestraçãoKubernetes (K3s/MicroK8s)Gerenciamento de containers e recursos.Object StorageMinIOSimulação de S3 (AWS) para Data Lake.ProcessamentoApache Spark (PySpark)Processamento distribuído de dados massivos.Storage LayerDelta LakeCamada transacional ACID sobre o Data Lake.ML OpsMLflowTracking de métricas, parâmetros e Model Registry.ServingFastAPI & UvicornAPI de alta performance para inferência em tempo real.CI/CDGitHub ActionsAutomação de testes e build de imagens Docker.
 
-Como Executar Localmente
+## Como Executar Localmente
 Pré-requisitos
-Docker & Kubernetes (recomendo K3s ou Docker Desktop com K8s ativo).
+* Docker & Kubernetes (recomendo K3s ou Docker Desktop com K8s ativo).
 
-Python 3.9+
+* Python 3.9+
 
-Helm (para gerenciar pacotes no K8s).
+* Helm (para gerenciar pacotes no K8s).
 
-. Infraestrutura (Setup do Cluster)
+1. Infraestrutura (Setup do Cluster)
 Suba os serviços base (MinIO e MLflow) através dos manifestos:
 
 ```Bash
