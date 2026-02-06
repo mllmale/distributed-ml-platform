@@ -5,7 +5,7 @@
 ![Spark](https://img.shields.io/badge/apache_spark-3.5-E25A1C)
 ![Status](https://img.shields.io/badge/status-active-success)
 
-## 📋 Sobre o Projeto
+##  Sobre o Projeto
 
 O **OpenLake MLOps** é uma prova de conceito (PoC) de uma plataforma de Engenharia de Machine Learning robusta, projetada para cobrir todo o ciclo de vida dos dados: da ingestão distribuída ao deployment de modelos em produção.
 
@@ -33,7 +33,7 @@ graph LR
     F -->|Inference| G[End User/App]
 
 ```
-🛠️ Tech StackComponenteTecnologiaFunção no ProjetoOrquestraçãoKubernetes (K3s/MicroK8s)Gerenciamento de containers e recursos.Object StorageMinIOSimulação de S3 (AWS) para Data Lake.ProcessamentoApache Spark (PySpark)Processamento distribuído de dados massivos.Storage LayerDelta LakeCamada transacional ACID sobre o Data Lake.ML OpsMLflowTracking de métricas, parâmetros e Model Registry.ServingFastAPI & UvicornAPI de alta performance para inferência em tempo real.CI/CDGitHub ActionsAutomação de testes e build de imagens Docker.
+ Tech StackComponenteTecnologiaFunção no ProjetoOrquestraçãoKubernetes (K3s/MicroK8s)Gerenciamento de containers e recursos.Object StorageMinIOSimulação de S3 (AWS) para Data Lake.ProcessamentoApache Spark (PySpark)Processamento distribuído de dados massivos.Storage LayerDelta LakeCamada transacional ACID sobre o Data Lake.ML OpsMLflowTracking de métricas, parâmetros e Model Registry.ServingFastAPI & UvicornAPI de alta performance para inferência em tempo real.CI/CDGitHub ActionsAutomação de testes e build de imagens Docker.
 
 Como Executar Localmente
 Pré-requisitos
@@ -65,16 +65,18 @@ Execute o job Spark para ingerir os dados brutos e convertê-los para tabelas De
 
 # Submissão do job Spark dentro do cluster
 kubectl apply -f etl/spark-job-ingest.yaml
-Este job lê o dataset de data/raw, aplica limpeza e salva em s3a://lakehouse/silver em formato Delta.
 ```
+Este job lê o dataset de data/raw, aplica limpeza e salva em s3a://lakehouse/silver em formato Delta.
+
 3. Treinamento de Modelo
 Dispare o pipeline de treinamento. O script conectará automaticamente ao MLflow para registrar o experimento:
 
 ``` Bash
 
 kubectl apply -f ml/training-job.yaml
-Você pode acessar a UI do MLflow em http://localhost:5000 para ver as métricas (Acurácia, F1-Score) e o artefato do modelo salvo.
 ```
+Você pode acessar a UI do MLflow em http://localhost:5000 para ver as métricas (Acurácia, F1-Score) e o artefato do modelo salvo.
+
 4. Serving (Inferência)
 Suba a API que carrega o modelo "Production" do MLflow:
 
