@@ -9,7 +9,7 @@
 
 O **OpenLake MLOps** é uma prova de conceito (PoC) de uma plataforma de Engenharia de Machine Learning robusta, projetada para cobrir todo o ciclo de vida dos dados: da ingestão distribuída ao deployment de modelos em produção.
 
-O objetivo principal é demonstrar como transicionar workloads de dados tradicionais para uma arquitetura moderna baseada em **Containers (Kubernetes)** e **Lakehouse (Delta Lake)**, garantindo escalabilidade, governança e reprodutibilidade.
+O objetivo principal é demonstrar como transicionar workloads de dados tradicionais para uma arquitetura moderna baseada em **Containers** e **Lakehouse (Delta Lake)**, garantindo escalabilidade, governança e reprodutibilidade.
 
 Este projeto foi desenhado para resolver problemas comuns de ML em produção:
 * Processamento de grandes volumes de dados (Big Data) que não cabem na memória RAM.
