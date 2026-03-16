@@ -1,7 +1,6 @@
 # OpenLake MLOps Platform
 
 ![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)
-![Kubernetes](https://img.shields.io/badge/kubernetes-v1.28%2B-326ce5)
 ![Spark](https://img.shields.io/badge/apache_spark-3.5-E25A1C)
 ![Status](https://img.shields.io/badge/status-active-success)
 
@@ -9,7 +8,7 @@
 
 O **OpenLake MLOps** é uma prova de conceito (PoC) de uma plataforma de Engenharia de Machine Learning robusta, projetada para cobrir todo o ciclo de vida dos dados: da ingestão distribuída ao deployment de modelos em produção.
 
-O objetivo principal é demonstrar como transicionar workloads de dados tradicionais para uma arquitetura moderna baseada em **Containers (Kubernetes)** e **Lakehouse (Delta Lake)**, garantindo escalabilidade, governança e reprodutibilidade.
+O objetivo principal é demonstrar como transicionar workloads de dados tradicionais para uma arquitetura moderna baseada em **Containers** e **Lakehouse (Delta Lake)**, garantindo escalabilidade, governança e reprodutibilidade.
 
 Este projeto foi desenhado para resolver problemas comuns de ML em produção:
 * Processamento de grandes volumes de dados (Big Data) que não cabem na memória RAM.
@@ -33,7 +32,6 @@ graph LR
     F -->|Inference| G[End User/App]
 
 ```
- Tech StackComponenteTecnologiaFunção no ProjetoOrquestraçãoKubernetes (K3s/MicroK8s)Gerenciamento de containers e recursos.Object StorageMinIOSimulação de S3 (AWS) para Data Lake.ProcessamentoApache Spark (PySpark)Processamento distribuído de dados massivos.Storage LayerDelta LakeCamada transacional ACID sobre o Data Lake.ML OpsMLflowTracking de métricas, parâmetros e Model Registry.ServingFastAPI & UvicornAPI de alta performance para inferência em tempo real.CI/CDGitHub ActionsAutomação de testes e build de imagens Docker.
 
 ## Como Executar Localmente
 Pré-requisitos
