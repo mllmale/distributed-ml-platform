@@ -25,7 +25,7 @@ mlflow.set_experiment("OpenLake_Classificacao_Usuarios")
 
 
 def main():
-    mlflow.sklearn.autolog()
+    #mlflow.sklearn.autolog()
 
     with mlflow.start_run() as run:
         print(f"🚀 Iniciando experimento. Run ID: {run.info.run_id}")
@@ -52,6 +52,11 @@ def main():
         acuracia = accuracy_score(y_test, previsoes)
 
         mlflow.log_metric("acuracia_customizada", acuracia)
+        print(f"✅ Treino concluído! Acurácia: {acuracia}")
+
+        print("📦 Fazendo upload do modelo para o MinIO...")
+        mlflow.sklearn.log_model(model, "model")
+
         print(f"✅ Treino concluído! Acurácia: {acuracia}")
 
 

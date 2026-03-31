@@ -32,7 +32,16 @@ graph LR
     F -->|Inference| G[End User/App]
 
 ```
+### 📸 Demonstração da Plataforma
 
+**1. Armazenamento com Delta Lake (MinIO)**
+![MinIO Delta Lake](assets/minio_delta.png)
+
+**2. Rastreamento de Experimentos (MLflow)**
+![MLflow Tracking](assets/mlflow_tracking.png)
+
+**3. API de Inferência Gerada Automaticamente (FastAPI)**
+![FastAPI Docs](assets/fastapi_docs.png)
 ## Como Executar Localmente
 Pré-requisitos
 * Docker & Kubernetes (recomendo K3s ou Docker Desktop com K8s ativo).
@@ -100,3 +109,5 @@ Para garantir a confiabilidade dos dados ("Data Reliability"), o formato Parquet
 
 ## Contato
 Projeto desenvolvido como portfólio de Engenharia de Plataforma.
+
+

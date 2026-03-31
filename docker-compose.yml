@@ -1,10 +1,60 @@
+version: '3.8'
+
 services:
+  # Banco de Dados para armazenar os metadados do MLflow
+  db:
+    image: postgres:15
+    container_name: openlake_db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - openlake_net
+
+  # Object Storage (MinIO) - Nosso Data Lakehouse
   minio:
     image: minio/minio
+    container_name: openlake_minio
     ports:
       - "9000:9000"
       - "9001:9001"
     environment:
-      MINIO_ROOT_USER: euzinha
-      MINIO_ROOT_PASSWORD: senhazona123
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     command: server /data --console-address ":9001"
+    networks:
+      - openlake_net
+
+  mlflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.mlflow
+    container_name: openlake_mlflow
+    ports:
+      - "5000:5000"
+    environment:
+      - AWS_ACCESS_KEY_ID=${MINIO_ROOT_USER}
+      - AWS_SECRET_ACCESS_KEY=${MINIO_ROOT_PASSWORD}
+      - MLFLOW_S3_ENDPOINT_URL=${INTERNAL_S3_ENDPOINT}
+      - MLFLOW_S3_IGNORE_TLS=true
+    command: >
+      mlflow server 
+      --backend-store-uri postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      --default-artifact-root s3://lakehouse/artifacts
+      --host 0.0.0.0
+    depends_on:
+      db:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    networks:
+      - openlake_net
+networks:
+  openlake_net:
+    driver: bridge
